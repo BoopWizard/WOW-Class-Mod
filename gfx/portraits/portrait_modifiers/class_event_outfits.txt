@@ -1,0 +1,19 @@
+﻿class_event_outfits = {	
+usage = game
+selection_behavior = weighted_random
+priority = 5
+
+	rogue_chest = {
+		dna_modifiers = {
+		accessory = {
+			mode = add
+			gene = clothes
+			template = fp1_commoner_clothes     # This is the subgroup with the refs to the 3D models it will load
+    }
+  }
+  outfit_tags = { rogue_chest }  # This is the tag that you use in the portrait window. If this line is not here, just add it and use an appropriate name.
+  weight = {                                          # ..It is usually good practice to name the new outfit tag after the subroup it comes from (which is why this one is named deal_with_it_sunglasses_headgear).
+    base = 0
+		}
+	}	
+}

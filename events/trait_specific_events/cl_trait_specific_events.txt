@@ -1,6 +1,6 @@
 ﻿namespace = class_event
 
-class_event.0001 = { #Baby on board
+class_event.0001 = { #Warrior: Baby on Board
 	type = character_event #idk what this does
 	title = "Warrior: Baby on Board" #Replace with loc
 	trigger = {
@@ -51,7 +51,6 @@ class_event.0001 = { #Baby on board
 	immediate = {
 		add_character_flag = {
 			flag = had_event_class_event.0001
-			days = 365
 		}
 		if = { #Any >=3y/o child already at court? If so, make them the baby_scope
 				limit = { #a limit decides under what conditions the if should fire
@@ -147,4 +146,82 @@ class_event.0001 = { #Baby on board
 			scope:baby_scope = { silent_disappearance_effect = yes }
 		}
 	}
+}
+
+class_event.0002 = { #Warrior: The Duelist
+	type = character_event
+	title = "Warrior: The Duelist"
+	desc = {
+	desc = cl_class_event.0002.desc
+	desc = cl_class_event.0002.desc2
+	desc = cl_class_event.0002.desc3
+	desc = cl_class_event.0002.desc4
+	}
+	theme = war
+	override_background = wilderness_forest
+	trigger = {
+		has_trait = cl_warrior
+		is_ai = no
+		is_available = yes
+		NOR = { 
+		has_character_flag = had_event_class_event.0002
+		has_trait_xp = {
+						trait = cl_warrior
+						track = fury
+						value >= 30
+					}
+		has_trait_xp = {
+						trait = cl_warrior
+						track = arms
+						value >= 30
+					}			
+		has_trait_xp = {
+						trait = cl_warrior
+						track = prot
+						value >= 30
+					}				
+		}
+		}
+	left_portrait = { #what the left portrait in the event should be. root is you
+		character = root 
+	   	animation = lantern
+	}
+	right_portrait = { #same but for right. baby_scope is defined later
+		character = scope:rogue_scope
+		animation = aggressive_dagger
+		hide_info = yes
+			triggered_outfit = {
+ 			remove_default_outfit = yes
+ 			outfit_tags = { 
+			rogue_chest 
+			}
+			outfit_tags = { 
+			mena_stealth_hood
+			}
+ 		}	
+	}	
+	immediate = {
+		add_character_flag = {
+			flag = had_event_class_event.0002
+		}
+		create_character = {
+				gender = male
+				location = root.location
+				culture = root.location.county.culture
+				faith = root.location.county.faith
+				age =  { 18 25 }
+				trait = brave
+				trait = generous
+				trait = just
+				trait = education_intrigue_4
+				martial = {7 10}
+				prowess = {11 12}
+				intrigue = {9 12}
+				dynasty = none #lowborn
+				save_scope_as = rogue_scope
+			}	
+	}
+		option = {
+		add_prowess_skill = 1
+		}
 }

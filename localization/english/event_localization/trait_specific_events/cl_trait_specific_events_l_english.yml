@@ -6,3 +6,7 @@
  cl_class_event.0001.c:0 "Here, let me show you how to hold a sword!"
  cl_class_event.0001.good:0 "You enjoy a well earned break"
  cl_class_event.0001.bad:0 "Your break messes up your training regimen"
+ cl_class_event.0002.desc:0 "The night is dark. The path before you is only lit by the light from your dim lantern.\n\n"
+ cl_class_event.0002.desc2:0 "You pause for a moment suspecting that there may be an ambush ahead, when suddenly your intuition proves correct as you see a figure hiding by the side of the rode.\n\n"
+ cl_class_event.0002.desc3:0 "The figure springs forth revealing himself to be a man holding a small dagger and concealing himself with a head covering.\n\n"
+ cl_class_event.0002.desc4:0 ""Next time you should tie your purse tighter to your person, [ROOT.Char.GetTitledFirstName]. It was far too easy to grab it from you as soon as you left [ROOT.Char.GetCapitalLocation.GetTitle.GetNameNoTier]. Best me in a duel, and it will be yours again!""

@@ -1,0 +1,16 @@
+﻿duelist_character_template = { 
+	name = "Louis"
+	# AKA: Louis 'le Begue'
+	dna = rogue_dude
+	dynasty = 25061
+	faith = catholic
+	culture = french
+	trait = content
+	trait = trusting
+	trait = craven
+	trait = stuttering
+	trait = education_learning_4
+	father = 90104 #(King Charles the Bald)
+	mother = 167830 #(Irminitrude of Orléans)
+}
+
