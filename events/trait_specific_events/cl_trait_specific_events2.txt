@@ -10,7 +10,7 @@ class_event.0500 = { #Warrior's Philosophy
     override_background = {
         reference = study
     }
-    
+
     left_portrait {
         character = root
         animation = worry
@@ -24,8 +24,9 @@ class_event.0500 = { #Warrior's Philosophy
     }
 
     immediate = {
-        		add_character_flag = {
-			flag = had_event_class_event.0001
+        	add_character_flag = {
+			flag = had_event_class_event.0500
+    }
     }
 
     option = {
