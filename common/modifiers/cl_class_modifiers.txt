@@ -6,3 +6,18 @@ cl_warrior_eventmod.2 = {
 	icon = health_positive
 	health = 0.10
 }
+
+cl_warrior_minicommander.1 = { #Arms choice, takes from the flexible leader commander trait
+	icon = martial_positive
+	enemy_terrain_advantage = -0.5
+}
+
+cl_warrior_minicommander.2 = { #Fury choice, takes from the aggressive attacker commander trait
+	icon = martial_positive
+	enemy_hard_casualty_modifier = 0.25
+}
+
+cl_warrior_minicommander.3 = { #Prot choice, takes from the unyielding defender commander trait
+	icon = martial_positive
+	hard_casualty_modifier = -0.25
+}

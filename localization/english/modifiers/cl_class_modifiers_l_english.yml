@@ -1,3 +1,7 @@
 ﻿l_english:
  cl_warrior_eventmod.1:0 "Lapsed Regimen"
  cl_warrior_eventmod.2:0 "Well Rested"
+
+ cl_warrior_minicommander.1:0 "Arms Approach"
+ cl_warrior_minicommander.2:0 "Fury Approach"
+ cl_warrior_minicommander.3:0 "Protection Approach"
