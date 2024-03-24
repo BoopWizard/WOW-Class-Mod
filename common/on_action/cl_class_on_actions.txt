@@ -1,0 +1,37 @@
+﻿quarterly_playable_pulse = {
+	on_actions = {
+	cl_warrior_progress_pulse
+	}
+}
+cl_warrior_progress_pulse = { # Fires 4 times per year
+	trigger = {
+		has_trait = cl_warrior
+		is_landed = yes 
+		exists = capital_province 
+		trigger_if = {
+			limit = {
+				is_ai = no
+			}
+		}
+	}
+
+	first_valid_on_action = {
+		cl_warrior_ongoing_events # General event pool
+	}
+}
+cl_warrior_ongoing_events = {
+	trigger = {
+		is_available = yes
+	}
+
+	random_on_action = {
+		chance_to_happen = 100
+		100 = cl_warrior_low_events		
+	}
+}
+cl_warrior_low_events = {
+	random_events = {
+		100 = class_event.0001
+	}
+}
+

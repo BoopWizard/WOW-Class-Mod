@@ -1,0 +1,139 @@
+﻿cl_warrior = {
+	ruler_designer_cost = 0
+	desc = trait_cl_warrior_desc
+	martial = 1
+	prowess = 1
+	stewardship = -2
+	learning = -1
+	icon = {
+		first_valid = {
+			triggered_desc = { # If no character exists
+				trigger = { NOT = { exists = this } }
+				desc = cl_class_warrior.dds
+			}
+				triggered_desc = {
+				trigger = {
+					has_trait_xp = {
+						trait = cl_warrior
+						track = arms
+						value >= 30
+					}
+				}
+				desc = cl_arms.dds
+			}
+				triggered_desc = {
+				trigger = {
+					has_trait_xp = {
+						trait = cl_warrior
+						track = fury
+						value >= 30
+					}
+				}
+				desc = cl_fury.dds
+			}
+				triggered_desc = {
+				trigger = {
+					has_trait_xp = {
+						trait = cl_warrior
+						track = prot
+						value >= 30
+					}
+				}
+				desc = cl_prot.dds
+			}
+			desc = cl_class_warrior.dds
+		}
+	}
+
+	tracks = {
+		arms = {
+			30 = {
+				prowess = 1
+				martial = 1
+			}
+
+			50 = {
+				prowess = 1
+			}
+
+			75 = {
+				prowess = 1
+				martial = 1
+			}
+			100 = {
+				prowess = 1
+				martial = 1
+			}
+		}
+		fury = {
+			30 = {
+				prowess_per_stress_level = 1
+			}
+
+			50 = {
+				prowess_per_stress_level = 1
+			}
+
+			75 = {
+				prowess_per_stress_level = 2
+			}
+			100 = {
+				prowess_per_stress_level = 2
+			}
+		}
+		prot = {
+			30 = {
+				health = 0.05
+			}
+
+			50 = {
+				health = 0.05
+			}
+
+			75 = {
+				health = 0.10
+			}
+			100 = {
+				health = 0.10
+			}
+		}
+	}	
+	name = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = this
+					has_trait_xp = {
+						trait = cl_warrior
+						track = arms
+						value >= 30
+					}
+				}
+				desc = trait_cl_warrior_1
+			}
+			triggered_desc = {
+				trigger = { 
+					exists = this
+					has_trait_xp = {
+						trait = cl_warrior
+						track = fury
+						value >= 30
+					}
+				}
+				desc = trait_cl_warrior_2
+			}
+			triggered_desc = {
+				trigger = {
+					exists = this
+					has_trait_xp = {
+						trait = cl_warrior
+						track = prot
+						value >= 30
+					}
+				}
+				desc = trait_cl_warrior_3
+			}
+			desc = trait_cl_warrior
+		}
+	}
+}

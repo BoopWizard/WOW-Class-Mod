@@ -1,0 +1,50 @@
+warrior_training_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_invite_knights.dds"
+	desc = warrior_training_decision_desc
+	selection_tooltip = warrior_training_decision_tooltip
+	is_shown = {
+		OR = { 
+		has_trait = education_martial_1
+		has_trait = education_martial_2
+		has_trait = education_martial_3
+		has_trait = education_martial_4
+		has_trait = education_martial_5	
+		}
+		NOT = { 
+		has_trait = cl_warrior
+		has_trait = hunter
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		NOR = {
+			has_trait = cl_warrior
+			has_trait = coward
+		}
+		is_available_adult = yes
+	}
+
+	is_valid = {
+		prowess >= 10
+		OR = { 
+		has_trait = education_martial_1
+		has_trait = education_martial_2
+		has_trait = education_martial_3
+		has_trait = education_martial_4
+		has_trait = education_martial_5	
+		}
+	}
+
+	effect = {
+
+		send_interface_toast = {
+			title = msg_became_warrior
+			left_icon = root
+			add_trait = cl_warrior
+		}
+		stress_impact = {
+			lustful = major_stress_impact_gain
+			lifestyle_reveler = medium_stress_impact_gain
+		}
+	}
+}

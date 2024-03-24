@@ -1,0 +1,8 @@
+﻿l_english:
+ cl_class_event.0001.desc:0 "My time in the training ground is usually spent sparring with experienced $knight_culture_player_plural_no_tooltip$ so imagine my surprise when I spot my [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('baby_scope') )] [baby_scope.GetTitledFirstName] in my training spot playing with a stick!"
+ cl_class_event.0001.a:0 "I'll... come back later."
+ cl_class_event.0001.desc2:0 "My time in the training ground is usually occupied sparring with $knight_culture_player_plural_no_tooltip$ so imagine my surprise when I spot a child in my training spot playing with a stick!"
+ cl_class_event.0001.b:0 "Leave. #bold NOW! #!"
+ cl_class_event.0001.c:0 "Here, let me show you how to hold a sword!"
+ cl_class_event.0001.good:0 "You enjoy a well earned break"
+ cl_class_event.0001.bad:0 "Your break messes up your training regimen"

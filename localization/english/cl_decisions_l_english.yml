@@ -1,0 +1,6 @@
+﻿l_english:
+ warrior_training_decision:0 "Become a Warrior"
+ warrior_training_decision_desc:0 "All throughout my youth I have dreamed of becoming a Warrior. Today, that dream becomes a reality."
+ warrior_training_decision_tooltip:0 "I become a Warrior"
+ warrior_training_decision_confirm:0 "It's time..."
+ msg_became_warrior:0 "Became a Warrior"

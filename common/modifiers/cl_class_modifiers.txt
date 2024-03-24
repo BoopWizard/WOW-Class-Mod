@@ -1,0 +1,8 @@
+﻿cl_warrior_eventmod.1 = {
+	icon = prowess_negative
+	prowess = -1
+}
+cl_warrior_eventmod.2 = {
+	icon = health_positive
+	health = 0.10
+}

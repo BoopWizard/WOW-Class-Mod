@@ -1,0 +1,150 @@
+﻿namespace = class_event
+
+class_event.0001 = { #Baby on board
+	type = character_event #idk what this does
+	title = "Warrior: Baby on Board" #Replace with loc
+	trigger = {
+		has_trait = cl_warrior
+		is_ai = no
+		is_available = yes
+		NOR = { 
+		has_character_flag = had_event_class_event.0001
+		has_trait_xp = {
+						trait = cl_warrior
+						track = fury
+						value >= 30
+					}
+		has_trait_xp = {
+						trait = cl_warrior
+						track = arms
+						value >= 30
+					}			
+		has_trait_xp = {
+						trait = cl_warrior
+						track = prot
+						value >= 30
+					}				
+		}
+		}
+	desc = { #desides whether I should reference a relation to the child or not
+		first_valid = { #first trigger valid will be the one we go with
+			triggered_desc = {
+				trigger = {
+					scope:baby_scope = {is_courtier_of = root}
+				}
+				desc = cl_class_event.0001.desc
+			}
+			triggered_desc = {
+				desc = cl_class_event.0001.desc2
+			}
+		}
+	}
+	theme = war #decides background
+	left_portrait = { #what the left portrait in the event should be. root is you
+		character = root 
+	   	animation = fear
+	}
+	right_portrait = { #same but for right. baby_scope is defined later
+		character = scope:baby_scope
+		animation = idle
+	}
+	immediate = {
+		add_character_flag = {
+			flag = had_event_class_event.0001
+			days = 365
+		}
+		if = { #Any >=3y/o child already at court? If so, make them the baby_scope
+				limit = { #a limit decides under what conditions the if should fire
+					any_courtier_or_guest = { 
+					age <= 3
+				    is_available = yes
+					is_ai = yes
+					}
+				}
+				random_courtier_or_guest = { 
+					limit = {age <= 3}
+					save_scope_as = baby_scope #defines what baby_scope is
+				}
+			}
+		else = { #No valid child in court, so we make one
+				create_character = {
+				location = root.location
+				culture = root.location.county.culture
+				faith = root.location.county.faith
+				age =  { 0 3 }
+				trait = rowdy
+				dynasty = none #lowborn
+				save_scope_as = baby_scope
+			}				
+		}	
+	}
+	option = { #arms - take a break
+		name = cl_class_event.0001.a
+		add_trait_xp = {trait = cl_warrior track=arms value=10} #30xp is needed to reach a spec level. 10 is added for every low warrior event
+		stress_impact = { 
+			diligent = medium_stress_impact_gain
+			impatient = medium_stress_impact_gain
+			stubborn = minor_stress_impact_gain
+		}
+		random_list = { #chooses a random option with a 50/50 chance
+			50 = {
+				desc = cl_class_event.0001.good 
+				send_interface_toast = { #an interace toast is that little scroll that pops up in the top middle of your screen sometimes
+					type = event_toast_effect_good
+					title = cl_class_event.0001.good
+					left_icon = root
+					add_character_modifier = { #modifiers are those small bonuses you see on your char sheet
+					    modifier = cl_warrior_eventmod.2 #defined in cl_class_modifiers 
+						years = 1
+					}
+				}
+			}
+			50 = {
+				desc = cl_class_event.0001.bad
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = cl_class_event.0001.bad
+					left_icon = root
+					add_character_modifier = {
+						modifier = cl_warrior_eventmod.1
+						years = 1
+					}
+				}
+			}
+		}
+	}
+	option = { #fury GTFO
+		name = cl_class_event.0001.b
+		add_trait_xp = {trait = cl_warrior track=fury value=10}
+		stress_impact = { 
+			calm = medium_stress_impact_gain
+			patient = medium_stress_impact_gain
+			compassionate = low_stress_impact_gain
+		}
+		reverse_add_opinion = { 
+			target = scope:baby_scope
+			modifier = cl_hateskids_opinion #modifiers are also used in cl_class_opinions for a different reason. These are like macros for opinon debuffs
+		}
+	}
+	option = { #prot teaching moment
+		name = cl_class_event.0001.c
+		add_trait_xp = {trait = cl_warrior track=prot value=10}
+		stress_impact = { 
+			wrathful = medium_stress_impact_gain
+			lazy = minor_stress_impact_gain
+			shy = minor_stress_impact_gain
+			callous = minor_stress_impact_gain
+			sadistic = medium_stress_impact_gain
+		}
+		scope:baby_scope = { #adds 1 prowess to baby_scope. notice how every time baby_scope is called I use scope: first
+		add_prowess_skill = 1
+		}
+	}	
+	
+	after = { #after the event is done fucking anhiliate the generated kid. bug test this to see if it deletes guests too plz
+		if = {
+			limit = { NOT = {scope:baby_scope = { is_courtier_of = root }}}
+			scope:baby_scope = { silent_disappearance_effect = yes }
+		}
+	}
+}
