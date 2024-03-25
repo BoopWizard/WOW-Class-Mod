@@ -2,7 +2,7 @@
 		has_trait = cl_warrior
 		is_ai = no
 		is_available = yes
-		NOT = {
+		NOR = {
 		has_trait_xp = {
 						trait = cl_warrior
 						track = fury
