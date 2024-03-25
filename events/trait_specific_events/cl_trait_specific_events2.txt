@@ -37,7 +37,10 @@ class_event.0500 = { #Warrior's Philosophy
 			content = medium_stress_impact_gain
 			humble = minor_stress_impact_gain
 		}
-        modifier = cl_warrior_minicommander.1
+        add_character_modifier = { 
+			modifier = cl_warrior_minicommander.1 
+			years = 1
+		}
     }
     option = {
         name = cl_class_event.0500.b
@@ -47,7 +50,10 @@ class_event.0500 = { #Warrior's Philosophy
 			patient = medium_stress_impact_gain
 			compassionate = minor_stress_impact_gain
 		}
-        modifier = cl_warrior_minicommander.2
+        add_character_modifier = { 
+			modifier = cl_warrior_minicommander.2 
+			years = 1
+		}
     }
     option = {
         name = cl_class_event.0500.c
@@ -57,6 +63,9 @@ class_event.0500 = { #Warrior's Philosophy
 			impatient = medium_stress_impact_gain
 			arbitrary = minor_stress_impact_gain
 		}
-        modifier = cl_warrior_minicommander.3
+        add_character_modifier = { 
+			modifier = cl_warrior_minicommander.3
+			years = 1
+		}
     }
 }
