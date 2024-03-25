@@ -11,14 +11,14 @@ class_event.0500 = { #Warrior's Philosophy
         reference = study
     }
 
-    left_portrait {
+    left_portrait = {
         character = root
         animation = worry
     }
 
     trigger = {
         cl_warrior_xp_low = yes
-        NOT{
+        NOT = {
         has_character_flag = had_event_class_event.0500
         }
     }
