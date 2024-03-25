@@ -1,4 +1,4 @@
-cl_warrior_xp_low = { #this should be able to be used instead of the warrior trigger every time, will test
+﻿cl_warrior_xp_low = { #this should be able to be used instead of the warrior trigger every time, will test
 		has_trait = cl_warrior
 		is_ai = no
 		is_available = yes

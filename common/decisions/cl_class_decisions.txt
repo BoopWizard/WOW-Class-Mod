@@ -1,4 +1,4 @@
-warrior_training_decision = {
+﻿warrior_training_decision = {
 	picture = "gfx/interface/illustrations/decisions/decision_invite_knights.dds"
 	desc = warrior_training_decision_desc
 	selection_tooltip = warrior_training_decision_tooltip

@@ -1,4 +1,4 @@
-namespace = class_event
+﻿namespace = class_event
 
 #warrior events
 class_event.0500 = { #Warrior's Philosophy
