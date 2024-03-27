@@ -2,7 +2,7 @@
 
 class_event.0001 = { #Warrior: Baby on Board
 	type = character_event #idk what this does
-	title = "Warrior: Baby on Board" #Replace with loc
+	title = cl_class_event.0001.title
 	trigger = {
 		has_trait = cl_warrior
 		is_ai = no
@@ -147,13 +147,26 @@ class_event.0001 = { #Warrior: Baby on Board
 		}
 	}
 }
-
-class_event.0002 = { #Warrior: The Duelist
+class_event.0002 = { #Warrior: The Rogue
 	type = character_event
-	title = "Warrior: The Duelist"
+	title = cl_class_event.0002.title
+	trigger = {
+        cl_warrior_xp_low = yes
+        NOT = {
+        has_character_flag = had_event_class_event.0002
+        }
+    }
 	desc = {
 	desc = cl_class_event.0002.desc
-	desc = cl_class_event.0002.desc2
+	triggered_desc = {
+		trigger = {
+			or = {
+				has_trait = paranoid
+				intrigue >= 14
+			}
+		}
+	desc = cl_class_event.0002.desc2	
+	}
 	desc = cl_class_event.0002.desc3
 	desc = cl_class_event.0002.desc4
 	}
@@ -189,21 +202,17 @@ class_event.0002 = { #Warrior: The Duelist
 	right_portrait = { #same but for right. baby_scope is defined later
 		character = scope:rogue_scope
 		animation = aggressive_dagger
-		hide_info = yes
-			triggered_outfit = {
- 			remove_default_outfit = yes
- 			outfit_tags = { 
-			rogue_chest 
-			}
-			outfit_tags = { 
-			mena_stealth_hood
-			}
- 		}	
 	}	
 	immediate = {
 		add_character_flag = {
 			flag = had_event_class_event.0002
 		}
+		send_interface_toast = {
+				type = event_toast_effect_bad
+				title = "He stole your gold!"
+				right_icon = ROOT
+				remove_short_term_gold = minor_gold_value
+			}
 		create_character = {
 				gender = male
 				location = root.location
@@ -218,10 +227,134 @@ class_event.0002 = { #Warrior: The Duelist
 				prowess = {11 12}
 				intrigue = {9 12}
 				dynasty = none #lowborn
+				random_traits = no
 				save_scope_as = rogue_scope
 			}	
+			scope:rogue_scope = {
+				add_character_flag = {
+					flag = rogue_flag
+				}
+			}
 	}
-		option = {
-		add_prowess_skill = 1
+		option = { #accept the challenge
+		name = cl_class_event.0002.op1
+		flavor = cl_class_event.0002.flavor
+		stress_impact = { 
+			craven = medium_stress_impact_gain
+			wrathful = minor_stress_impact_gain
+			lazy = minor_stress_impact_gain
+			vengeful = medium_stress_impact_gain
+			paranoid = medium_stress_impact_gain
+			brave = minor_stress_impact_loss
 		}
+		duel = {
+			skill = prowess
+			target = scope:rogue_scope
+
+			50 = {		
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = cl_class_event.0002.op1.1
+				custom_tooltip = cl_class_event.0002.custom2
+				custom_tooltip = cl_class_event.0002.custom
+				trigger_event = class_event.0004
+			}
+			50 = {		
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = cl_class_event.0002.op1.2
+				custom_tooltip = cl_class_event.0002.custom
+				trigger_event = class_event.0003
+			}
+		}
+	}
+	option = { #kill em instantly 
+	name = cl_class_event.0002.op2	
+	stress_impact = { 
+			craven = medium_stress_impact_gain
+			calm = medium_stress_impact_gain
+			lazy = minor_stress_impact_gain
+			paranoid = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			trusting = medium_stress_impact_gain
+			compassionate = major_stress_impact_gain
+			sadistic = medium_stress_impact_loss
+			wrathful = minor_stress_impact_loss
+		}
+	unknown_murder_effect = {
+						VICTIM = scope:rogue_scope
+						MURDERER = root
+						REASON = death_mysterious
+					}
+	add_short_term_gold = minor_gold_value		
+	add_trait_xp = {trait = cl_warrior track=fury value=10}		
+	}
+	option = { #GUARDS!
+	name = cl_class_event.0002.op3
+	stress_impact = { 
+			calm = minor_stress_impact_gain
+			brave = medium_stress_impact_gain
+			forgiving = medium_stress_impact_gain
+			honest = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			arbitrary = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			just = minor_stress_impact_loss
+		}
+	rightfully_imprison_character_effect = {
+			TARGET = scope:rogue_scope
+			IMPRISONER = root
+		}
+	add_trait_xp = {trait = cl_warrior track=prot value=10}
+	add_short_term_gold = minor_gold_value	
+	}	
+ after = {
+	if = {
+		limit = {
+			scope:rogue_scope = {
+				is_imprisoned = no
+			}
+		}
+		scope:rogue_scope = { silent_disappearance_effect = yes }
+	}
+	}
+}
+class_event.0003 = {
+	type = character_event
+	title = "Warrior: The Duelist"
+	left_portrait = { #what the left portrait in the event should be. root is you
+		character = root 
+	   	animation = severelywounded
+	}
+	theme = war
+	override_background = wilderness_forest
+	desc = cl_class_event.0003.desc
+	option = {
+		name = cl_class_event.0003.op1
+		add_trait_xp = {trait = cl_warrior track=arms value=10}
+		add_short_term_gold = minor_gold_value
+	}
+}
+class_event.0004 = {
+	type = character_event
+	title = "Warrior: The Duelist"
+	left_portrait = { #what the left portrait in the event should be. root is you
+		character = root 
+	   	animation = wrestling_victory
+	}
+	theme = war
+	override_background = wilderness_forest
+	desc = cl_class_event.0004.desc
+	option = {
+		name = cl_class_event.0004.op1
+		add_trait_xp = {trait = cl_warrior track=arms value=10}
+		add_short_term_gold = minor_gold_value
+		add_gold = 10
+	}
 }
